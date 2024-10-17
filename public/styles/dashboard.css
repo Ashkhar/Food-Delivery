@@ -1,0 +1,289 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    padding: 2.5em;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.8em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 15px 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 50px;
+}
+
+/* Login Dropdown */
+.login-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.login-dropdown .dropbtn {
+    background-color: #444;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.login-dropdown:hover .dropbtn {
+    background-color: #555;
+}
+
+.login-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.login-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.login-dropdown .dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.login-dropdown .dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 8px;
+}
+
+/* Main Section */
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.search-bar {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.search-input {
+    padding: 14px;
+    width: 60%;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #6a11cb;
+    outline: none;
+}
+
+.search-btn {
+    padding: 12px 30px;
+    background-color: #6a11cb;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #4e0dcb;
+    transform: translateY(-2px);
+}
+
+/* Meals and Products Sections */
+.meal-container,
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.meal-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    width: 280px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.meal-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Product Card */
+.product-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 28%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-card h3 {
+    margin: 15px 0;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-card p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.add-to-cart-btn {
+    padding: 14px 25px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+    .product-card {
+        width: 45%;
+    }
+
+    .meal-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .search-input {
+        width: 80%;
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+    margin-top: 50px;
+    border-top: 4px solid #4a90e2;
+}
+
+/* Category Dropdown Styling */
+.category-dropdown select {
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.category-dropdown select:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+footer p {
+    margin: 0;
+}

@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+/* Styles for the order list */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Individual order item styling */
+li {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Strong element for order details */
+strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Button styles for links */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white; /* Changed text color for contrast */
+    padding: 10px 15px; /* Consistent padding */
+    background-color: #28a745; /* Green background */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+a:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}

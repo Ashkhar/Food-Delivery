@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>View Customers</title>
+    <link rel="stylesheet" href="/styles/viewCustomers.css"> <!-- Link to your CSS -->
+</head>
+<body>
+    <h1>View Customers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% customers.forEach(customer => { %>
+                <tr>
+                    <td><%= customer.name %></td>
+                    <td><%= customer.email %></td>
+                    <td><%= customer.phone %></td>
+                    <td><%= customer.address %></td>
+                    <td><%= customer.createdAt.toDateString() %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <a href="/admin/dashboard">Back to Dashboard</a>
+</body>
+</html>

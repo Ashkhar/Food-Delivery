@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="/styles/cart.css">
+    <link rel="stylesheet" href="/styles/payment.css">
+    <link rel="stylesheet" href="/styles/back-to-cart.css">
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <a href="/dashboard" class="back-link">Back to Dashboard</a>
+    <a href="/payment" class="btn">Proceed to Payment</a>
+    
+    <ul>
+        <% if (!cartItems || cartItems.length === 0) { %>
+            <li>No items in your cart.</li>
+        <% } else { %>
+            <% cartItems.forEach(product => { %>
+                <li>
+                    <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 50px; height: 50px;"> <!-- Show product image -->
+                    <strong><%= product.name %></strong> - Price: $<%= product.price %>
+                    <button class="remove-from-cart-btn" onclick="removeFromCart('<%= product.id %>')">Remove</button> <!-- Add Remove button -->
+                </li>
+            <% }); %>
+        <% } %>
+    </ul>
+
+    <script>
+        // Function to remove item from cart
+        function removeFromCart(productId) {
+            fetch('/remove-from-cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: productId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);  
+                    location.reload();    
+                } else {
+                    alert(data.message);  
+                }
+            })
+            .catch(error => {
+                console.error('Error removing item from cart:', error);
+            });
+        }
+    </script>
+</body>
+</html>

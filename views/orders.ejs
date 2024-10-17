@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Orders</title>
+    <link rel="stylesheet" href="/styles/orders.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <h1>Your Orders</h1>
+    <ul>
+        <% if (orders.length === 0) { %>
+            <li>No orders found.</li>
+        <% } else { %>
+            <% orders.forEach(order => { %>
+                <li>
+                    <strong>Order ID: <%= order.id %></strong> - Total: $<%= order.total %>
+                    <!-- Add more order details as needed -->
+                </li>
+            <% }); %>
+        <% } %>
+    </ul>
+    <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>

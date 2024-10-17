@@ -1,0 +1,29 @@
+.product-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.product-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-container h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.product-container p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.product-container button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}

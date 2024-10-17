@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, <%= userName %>!</h1>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/orders">View My Orders</a></li>
+                <li><a href="/cart">View Cart</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li class="login-dropdown">
+                    <button class="dropbtn">Login</button>
+                    <div class="dropdown-content">
+                        <a href="/login">User Login</a>
+                        <a href="/admin/login">Admin Login</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="search-bar">
+            <form id="searchForm" action="/dashboard" method="get">
+                <input type="text" name="search" placeholder="Search for food or products..." class="search-input" aria-label="Search">
+                <select name="category" id="categoryDropdown" class="category-select" aria-label="Select meal category">
+                    <option value="Chicken" <%= selectedCategory === 'Chicken' ? 'selected' : '' %>>Chicken</option>
+                    <option value="Beef" <%= selectedCategory === 'Beef' ? 'selected' : '' %>>Beef</option>
+                    <option value="Vegetarian" <%= selectedCategory === 'Vegetarian' ? 'selected' : '' %>>Vegetarian</option>
+                    <option value="Dessert" <%= selectedCategory === 'Dessert' ? 'selected' : '' %>>Dessert</option>
+                </select>
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+        </div>
+
+        <section id="mealsSection">
+            <h2>Meals in <%= selectedCategory %> Category</h2>
+            <div id="mealContainer" class="meal-container">
+                <% if (meals.length === 0) { %>
+                    <p>No meals available in this category.</p>
+                <% } else { %>
+                    <% meals.forEach(meal => { %>
+                        <div class="meal-card">
+                            <img src="<%= meal.strMealThumb %>" alt="<%= meal.strMeal %>">
+                            <h3><%= meal.strMeal %></h3>
+                            <p>Category: <%= selectedCategory %></p>
+                            <!-- Updated button to send meal image, name, and price -->
+                            <button class="add-to-cart-btn" onclick="addToCart('<%= meal.idMeal %>', '<%= meal.strMeal %>', '<%= meal.strMealThumb %>')">Add to Cart</button>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </section>
+
+        <script src="/public/dashboard.js"></script>
+        <script>
+            // Update the addToCart function to send name, image, and price
+            function addToCart(id, name, image) {
+                fetch('/add-to-cart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        name: name,
+                        image: image,
+                        price: 10  
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);  
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                });
+            }
+
+            function loadMeals(category) {
+                const mealContainer = document.getElementById('mealContainer');
+                mealContainer.innerHTML = '<p>Loading meals...</p>'; 
+
+                fetch(`/dashboard?category=${category}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const meals = data.meals || [];
+                        mealContainer.innerHTML = ''; 
+
+                        if (meals.length === 0) {
+                            mealContainer.innerHTML = '<p>No meals available in this category.</p>';
+                        } else {
+                            meals.forEach(meal => {
+                                const mealCard = document.createElement('div');
+                                mealCard.className = 'meal-card';
+                                mealCard.innerHTML = `
+                                    <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                                    <h3>${meal.strMeal}</h3>
+                                    <p>Category: ${category}</p>
+                                    <!-- Updated button to pass meal image and name -->
+                                    <button class="add-to-cart-btn" onclick="addToCart('${meal.idMeal}', '${meal.strMeal}', '${meal.strMealThumb}')">Add to Cart</button>
+                                `;
+                                mealContainer.appendChild(mealCard);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching meals:', error);
+                        mealContainer.innerHTML = '<p>Error loading meals. Please try again later.</p>';
+                    });
+            }
+
+            // Category change event listener to reload meals
+            document.getElementById('categoryDropdown').addEventListener('change', function() {
+                const selectedCategory = this.value;
+                loadMeals(selectedCategory); 
+            });
+        </script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" href="/styles/payment.css"> <!-- Link to your CSS -->
+</head>
+<body>
+    <h1>Payment - Cash on Delivery</h1>
+    <form action="/place-order" method="POST">
+        <h2>Delivery Address</h2>
+        <div>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+        </div>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <button type="submit">Confirm Order</button>
+    </form>
+    
+    <!-- Updated Back to Cart button -->
+    <a href="/cart" class="btn">Back to Cart</a>
+</body>
+</html>
